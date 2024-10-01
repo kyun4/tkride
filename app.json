@@ -4,7 +4,7 @@
     "slug": "tkride",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/tkridelogo1.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -17,9 +17,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/tkridelogo1.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.tiyokanor32.tkride"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +32,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "81a9788a-ab5d-46bd-8f0c-a7352a7c10e4"
+      }
     }
   }
 }
