@@ -51,8 +51,8 @@ export default function SignUpPaymentAccount(){
     
     
 
-    const x_dimensions = Dimensions.get('window').width
-    const y_dimensions = Dimensions.get('window').height
+    const x_dimensions = Dimensions.get('window').width;
+    const y_dimensions = Dimensions.get('window').height;
 
     const styler = StyleSheet.create({
         page_title: {

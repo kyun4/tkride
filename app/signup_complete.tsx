@@ -47,11 +47,13 @@ export default function SignUpComplete(){
     const y_dimensions = Dimensions.get('window').height
 
     const styler = StyleSheet.create({
+
         page_title: {
             fontSize: 21,
             fontWeight:"bold",
             color:"#494547",
-            textAlign:"left"            
+            textAlign:"center",
+            width: "100%"            
         },
         section_title: { marginLeft: 12, marginBottom: 5, marginTop: 20, fontSize: 14, fontWeight:"300" },
         payment_method_img_signup: { height:55, width: 120, borderRadius: 10, marginVertical: 5 },
@@ -79,7 +81,16 @@ export default function SignUpComplete(){
             borderRadius: 10,
             marginVertical: 4,
             width: x_dimensions -200
-        }
+        },
+        
+        tk_logo: {
+            height: 75,
+            width: 75,
+            alignItems:"center",
+            marginBottom: 30
+        },
+        welcome_signup_title: {fontSize:16, textAlign:"center", marginTop: 5},
+        welcome_signup_subtitle: {fontSize:10, textAlign:"center", paddingHorizontal: 25}
     })
 
     const onLogin = () => {
@@ -89,24 +100,26 @@ export default function SignUpComplete(){
     }
 
     return(
-        <View style = {{ paddingHorizontal: 25,  marginTop: 70 }}>
+        <View style = {{ paddingHorizontal: 25, flex:1, justifyContent:"center", alignItems:"center" }}>
 
-            <View style = {{ flexDirection:"row", alignItems:"center", marginBottom: 20 }}>          
+            <Image style = { styler.tk_logo } source = {require('@/assets/images/tkridelogo1.png')}></Image>
 
-                <Text style = { styler.page_title }>Sign Up Complete</Text>
+            <View style = {{ flexDirection:"column", alignItems: "center" }}>
+
+                 <Text style = { styler.page_title }>Sign Up Complete</Text>               
+                 <Text style = {styler.welcome_signup_title}>Welcome our New User!</Text>
+                 <Text style = {styler.welcome_signup_subtitle}>You can now enjoy our promos and unlimited adventures with almost no vehicle type limit</Text>
 
             </View>
-
-         
-            <Text>Pwede na kayong tumira ng dalagita Tiyo Kanor at Tiyo Paeng! Mga 32!</Text>
+          
 
             <View style = {{ height: 25 }}></View>
 
             <TouchableOpacity onPress={onLogin}>
-                <View style = {{ flexDirection:"row", justifyContent:"flex-end", marginTop: 10 }}>
-                    <View style = {{backgroundColor:"#FD8A02", width: "50%", flexDirection:"row", alignItems:"center", justifyContent: "center", padding:10, borderRadius: 20}}>
+                <View style = {{ flexDirection:"row", justifyContent:"center", marginTop: 10 }}>
+                    <View style = {{backgroundColor:"#FD8A02", width: "70%", flexDirection:"row", alignItems:"center", justifyContent: "center", padding:15, borderRadius: 25}}>
                         <Text style = {{color:"#FFF", fontWeight: "bold", fontSize: 16}}>Done</Text>
-                        <FontAwesome5 name = "arrow-right" size = {12} style = {{marginLeft: 15}} color ="#FFF"></FontAwesome5>
+                        
                     </View>
                 </View>
             </TouchableOpacity>

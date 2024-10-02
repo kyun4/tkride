@@ -2,8 +2,7 @@ import {Text,Image,View, StyleSheet,TextInput,TouchableOpacity,Dimensions,FlatLi
 import React,{useEffect, useState} from 'react';
 import {useRouter} from 'expo-router';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { Picker } from '@react-native-picker/picker';
-import { IconAlignCenter } from 'tabler-icons';
+
 
 export default function SignUpMPin(){
 
@@ -15,10 +14,8 @@ export default function SignUpMPin(){
 
     }
 
-    const onSignUpComplete = () => {
-
-        router.navigate("/signup_complete")
-        
+    const onTermsConditions = () => {
+       router.navigate("/signup_terms")
     }
 
     const backclear_character = () => {
@@ -100,43 +97,12 @@ export default function SignUpMPin(){
         setMPinSix(mpin.charAt(5) != null ? mpin.charAt(5) : "")
 
         if(mpin.length >= 6){
-            onSignUpComplete()
+            onTermsConditions()
         }
 
     })
 
-    const dataAvailableEWallets = [
-        {
-            "ewallet_id": "1",
-            "ewallet_name":"GCash",
-            "ewallet_img": require('@/assets/payment_methods/gcash1.png')
-        },
-        {
-            "ewallet_id": "2",
-            "ewallet_name":"Maya",
-            "ewallet_img": require('@/assets/payment_methods/maya1.png')
-        },
-        {
-            "ewallet_id": "3",
-            "ewallet_name":"SeaBank",
-            "ewallet_img": require('@/assets/payment_methods/seabank1.png')
-        }
-    ];
 
-    const dataAvailableBanks = [
-        {
-            "ewallet_id": "1",
-            "ewallet_name":"GCash",
-            "ewallet_img": require('@/assets/payment_methods/cimb1.png')
-        },
-        {
-            "ewallet_id": "2",
-            "ewallet_name":"Maya",
-            "ewallet_img": require('@/assets/payment_methods/kanorbank1.png')
-        }    
-    ];
-
-    
     
 
     const x_dimensions = Dimensions.get('window').width
@@ -160,7 +126,8 @@ export default function SignUpMPin(){
         text_input_mpin_wrapper: {marginTop: 70,flexDirection:"row", justifyContent:"center",alignItems:"center"},
         text_input_mpin: { borderColor:"#a8a29e", backgroundColor:"#f5f5f4", borderWidth: 1, fontWeight: "bold",borderRadius: 10, height: 60, width: 40,marginHorizontal:2, textAlign:"center", padding: 5 },
         type_mpin_wrapper: { marginBottom: 30 },
-        type_mpin_button: { fontSize: 18, color: "#FFF", fontWeight: "bold", backgroundColor:"#fdba74", height: 60, width: 60, borderRadius: 60, textAlign:"center",padding: 15, margin: 8 },
+        type_mpin_button: { fontSize: 18, color: "#FFF", fontWeight: "bold", backgroundColor:"#FD8A02", height: 60, width: 60, borderRadius: 60, textAlign:"center",padding: 15, margin: 8 },
+        type_mpin_action_button: { borderColor: "#E7E1E1", borderWidth: 1, fontSize: 18, color: "#FD8A02", fontWeight: "bold", backgroundColor:"#FFF", height: 60, width: 60, borderRadius: 60, textAlign:"center",padding: 15, margin: 8 },
         section_title: { marginLeft: 12, marginBottom: 5, marginTop: 20, fontSize: 14, fontWeight:"300" },
         payment_method_img_signup: { height:55, width: 120, borderRadius: 10, marginVertical: 5 },
         payment_method_box: { shadowColor:"#737373", shadowOffset: {height:-4, width:10}, shadowRadius: 25, shadowOpacity:0.2, elevation: 5, backgroundColor: "#f5f5f4",  borderRadius: 10, paddingHorizontal:10, marginVertical: 5, marginHorizontal: 10, height: 70, width: "95%", flexDirection:"row", justifyContent:"space-between", alignItems:"center" },
@@ -276,8 +243,8 @@ export default function SignUpMPin(){
                
 
                     <TouchableOpacity onPress={backclear_character }>
-                        <View style = {styler.type_mpin_button}>
-                            <FontAwesome5 name = "arrow-left" size = {15} style = {{ margin: 7 }} color = "#FFF"></FontAwesome5>
+                        <View style = {styler.type_mpin_action_button}>
+                            <FontAwesome5 name = "arrow-left" size = {15} style = {{ margin: 7 }} color = "#FD8A02"></FontAwesome5>
                         </View>
                     </TouchableOpacity>
 
@@ -287,7 +254,7 @@ export default function SignUpMPin(){
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={backclear_all_character }>
-                        <View><Text style = {styler.type_mpin_button}>C</Text></View>
+                        <View><Text style = {styler.type_mpin_action_button}>C</Text></View>
                     </TouchableOpacity>
 
 
