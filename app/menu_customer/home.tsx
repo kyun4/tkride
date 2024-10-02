@@ -3,14 +3,38 @@ import React,{} from 'react';
 import {useRouter} from 'expo-router';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import {initializeApp} from '@firebase/app';
+import {getAuth, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged} from '@firebase/auth'; 
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBYoEopUEd7ltImNOFkbmgvKQvBIe4GUaU",
+    authDomain: "tkride-26796.firebaseapp.com",
+    projectId: "tkride-26796",
+    storageBucket: "tkride-26796.appspot.com",
+    messagingSenderId: "798862558442",
+    appId: "1:798862558442:web:b8ba92fa8690040d004393"
+  };
+  
+  const app = initializeApp(firebaseConfig) == null ? alert("Firebase Waiting to Initialize ...") : initializeApp(firebaseConfig);
+  
 
 export default function Home(){
 
     const router = useRouter();
 
-    const onLogout = () => {
-        router.navigate("/");
-    }
+    const onLogout = async () => {
+
+        const auth = getAuth();
+        
+        try{
+            await signOut(auth);
+            router.navigate("/");
+        }catch(error){
+            alert("error signing out");
+        }
+
+       
+    } // onLogout
 
     const x_dimensions = Dimensions.get('window').width
     const y_dimensions = Dimensions.get('window').height

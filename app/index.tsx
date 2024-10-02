@@ -1,15 +1,36 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Text, View, StyleSheet, TextInput,SafeAreaView, Image, Dimensions, TouchableOpacity } from "react-native";
 import { useRouter } from 'expo-router';
+import React,{useState} from 'react';
 
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut} from '@firebase/auth';
+import { initializeApp } from '@firebase/app';
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBYoEopUEd7ltImNOFkbmgvKQvBIe4GUaU",
+  authDomain: "tkride-26796.firebaseapp.com",
+  projectId: "tkride-26796",
+  storageBucket: "tkride-26796.appspot.com",
+  messagingSenderId: "798862558442",
+  appId: "1:798862558442:web:b8ba92fa8690040d004393"
+};
+
+const app = initializeApp(firebaseConfig) == null ? alert("Firebase Waiting to Initialize ...") : initializeApp(firebaseConfig);
 
 export default function Index() {
 
-
   const router = useRouter();
+
+
+  const auth = getAuth();
 
   const x_dimensions = Dimensions.get('window').width
   const y_dimensions = Dimensions.get('window').height
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [userDetails, setUserDetails] = useState({});
 
   const onSignUp = () => {
     router.navigate("/signup");
@@ -17,6 +38,38 @@ export default function Index() {
 
   const onHomeMenu = () => {
     router.navigate("/menu_customer/home")
+  }
+
+  const onLogin = async() => {
+
+  
+    try{
+
+      await signInWithEmailAndPassword(auth, email, password);
+
+      const unsubscribe = onAuthStateChanged(auth, (user)=>{
+        
+        if(user!=null){
+         
+            onHomeMenu();
+          
+        }else{
+          alert("User Not Found")
+        }
+
+      });
+  
+   
+
+    }catch(error){
+      alert(error);
+
+    }
+
+    setEmail("");
+    setPassword("");
+ 
+
   }
 
   const style = StyleSheet.create({
@@ -109,7 +162,7 @@ export default function Index() {
           <View>
             <FontAwesome5 name = "user" size = {15} style = {{ marginRight: 15, marginLeft: 10 }} color = "#FD8A02"></FontAwesome5>
           </View>         
-          <TextInput style = { style.textfield_default }  placeholderTextColor = "#494547"  placeholder = "Email/Username"></TextInput>
+          <TextInput style = { style.textfield_default }  onChangeText = {setEmail} placeholderTextColor = "#494547"  placeholder = "Email/Username"></TextInput>
         </View>
 
         <View style = {{ height: 5 }}></View>
@@ -118,12 +171,12 @@ export default function Index() {
           <View>
             <FontAwesome5 name = "lock" size = {15} style = {{ marginRight: 15, marginLeft: 10 }} color = "#FD8A02"></FontAwesome5>
           </View>         
-          <TextInput style = { style.textfield_default } secureTextEntry placeholderTextColor = "#494547"  placeholder = "Password"></TextInput>
+          <TextInput style = { style.textfield_default } onChangeText = {setPassword} secureTextEntry placeholderTextColor = "#494547"  placeholder = "Password"></TextInput>
         </View>
   
         <View style = {{ height: 15 }}></View>
 
-        <TouchableOpacity onPress={onHomeMenu} style = {style.button_login}>
+        <TouchableOpacity onPress={onLogin} style = {style.button_login}>
          
             <Text style = { style.text_login }>Login</Text>
         

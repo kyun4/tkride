@@ -1,8 +1,9 @@
-import {Text,Image,View, StyleSheet,TextInput,TouchableOpacity,Dimensions} from 'react-native';
+import {Text,Image,View, StyleSheet,TextInput,TouchableOpacity,Dimensions,ScrollView, Platform} from 'react-native';
 import React,{useState} from 'react';
 import {useRouter} from 'expo-router';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Picker } from '@react-native-picker/picker';
+import  DateTimePicker  from '@react-native-community/datetimepicker';
 
 export default function SignUp(){
 
@@ -56,9 +57,29 @@ export default function SignUp(){
 
     }
 
-    return(
-        <View style = {{ paddingHorizontal:30, marginTop: 70 }}>
+    const [date, setDate] = useState(new Date());
+    const [isShowDate, setShowDate] = useState(false);
 
+    const onChange = (event, selectedDate) => {
+
+      
+        const currentDate = selectedDate || date;
+       
+        setDate(currentDate);
+
+        setShowDate(!isShowDate);
+        
+        
+    }
+
+    const showDatePicker = () => {
+        setShowDate(true);
+    }
+
+    return(
+        <View style = {{ paddingHorizontal:30, marginTop: 70, marginBottom: 50 }}>
+
+        <ScrollView showsVerticalScrollIndicator={false}  >
             <View style = {{ flexDirection:"row", alignItems:"center", marginBottom: 20 }}>
 
                 <TouchableOpacity onPress = {onLogin}>
@@ -81,6 +102,18 @@ export default function SignUp(){
                 <View>
                     <TextInput style = { styler.signup_field } placeholder = "Last Name"></TextInput>
                 </View>
+
+                <View>
+                    <TextInput style = { styler.signup_field } value = {date.toLocaleDateString()} onPress = {showDatePicker} placeholder = "Birthdate"></TextInput>
+                </View>
+
+                { isShowDate && (  <DateTimePicker
+                value = {date}
+                mode = "date"
+                display = "default"
+                onChange = {onChange}/> )}
+               
+
             </View>
 
             
@@ -139,6 +172,8 @@ export default function SignUp(){
                 </View>
             </TouchableOpacity>
           
+            </ScrollView>
+
         </View>
     );
 
