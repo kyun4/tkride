@@ -12,6 +12,10 @@ export default function SignUp(){
     const x_dimensions = Dimensions.get('window').width
     const y_dimensions = Dimensions.get('window').height
 
+    const nextToPaymentAccount = () => {
+        router.navigate("/signup_payment_account")
+    }
+
     const styler = StyleSheet.create({
         page_title: {
             fontSize: 21,
@@ -19,16 +23,24 @@ export default function SignUp(){
             color:"#494547",
             textAlign:"left"            
         },
+        section_title: { marginLeft: 0, marginBottom: 5, marginTop: 10, fontSize: 14, fontWeight:"300" },
         signup_field: {
-            borderColor:"#E7E1E1",
+            borderColor:"#78716c",
             borderWidth: 1,
             paddingHorizontal: 20,
             paddingVertical: 10,
             borderRadius: 10,
-            marginVertical: 4
+            marginVertical: 4           
+        },
+        signup_field_picker: {           
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            borderRadius: 10,
+            marginVertical: 4,
+            backgroundColor:"#e7e5e4"
         },
         signup_field_short_address: {
-            borderColor:"#E7E1E1",
+            borderColor:"#78716c",
             borderWidth: 1,
             paddingHorizontal: 20,
             paddingVertical: 10,
@@ -59,7 +71,7 @@ export default function SignUp(){
 
             <View>
                 <View>
-                    <Text style = {{ marginLeft: 0, marginBottom: 5, fontSize: 14, fontWeight:"300" }}>Personal Information</Text>
+                    <Text style = {styler.section_title}>Personal Information</Text>
                 </View>
 
                 <View>
@@ -74,7 +86,7 @@ export default function SignUp(){
             
             <View style = {{ marginTop: 20 }}>
                 <View>
-                    <Text style = {{ marginLeft: 0, marginBottom: 5, fontSize: 14, fontWeight:"300" }}>Contact Information</Text>
+                    <Text  style = {styler.section_title}>Contact Information</Text>
                 </View>
 
                 <View>
@@ -89,7 +101,7 @@ export default function SignUp(){
             <View style = {{ marginTop: 20 }}>
 
                 <View>
-                    <Text style = {{ marginLeft: 0, marginBottom: 5, fontSize: 14, fontWeight:"300" }}>Address</Text>
+                    <Text  style = {styler.section_title}>Address</Text>
                 </View>
 
                 <View style = {{ flexDirection:"row", justifyContent:"space-between" }}>
@@ -106,7 +118,7 @@ export default function SignUp(){
 
                 <View>
                     <TextInput style = { styler.signup_field } placeholder = "Village"></TextInput>
-                    <Picker selectedValue = {selectedCity} style = {styler.signup_field} onValueChange={(itemValue, itemIndex) => setSelectedCity(itemValue)}>
+                    <Picker selectedValue = {selectedCity} style = {styler.signup_field_picker} onValueChange={(itemValue, itemIndex) => setSelectedCity(itemValue)}>
                         
                         <Picker.Item label = "(Select Your City)" value = ""></Picker.Item>
                         <Picker.Item label = "Taguig City" value = "1"></Picker.Item>
@@ -118,12 +130,14 @@ export default function SignUp(){
                 </View>
             </View>
 
-            <View style = {{ flexDirection:"row", justifyContent:"flex-end", marginTop: 10 }}>
-                <View style = {{backgroundColor:"#FD8A02", width: "50%", flexDirection:"row", alignItems:"center", justifyContent: "center", padding:10, borderRadius: 20}}>
-                    <Text style = {{color:"#FFF", fontWeight: "bold", fontSize: 16}}>Next</Text>
-                    <FontAwesome5 name = "arrow-right" size = {12} style = {{marginLeft: 15}} color ="#FFF"></FontAwesome5>
+            <TouchableOpacity onPress={nextToPaymentAccount}>
+                <View style = {{ flexDirection:"row", justifyContent:"flex-end", marginTop: 10 }}>
+                    <View style = {{backgroundColor:"#FD8A02", width: "50%", flexDirection:"row", alignItems:"center", justifyContent: "center", padding:10, borderRadius: 20}}>
+                        <Text style = {{color:"#FFF", fontWeight: "bold", fontSize: 16}}>Next</Text>
+                        <FontAwesome5 name = "arrow-right" size = {12} style = {{marginLeft: 15}} color ="#FFF"></FontAwesome5>
+                    </View>
                 </View>
-            </View>
+            </TouchableOpacity>
           
         </View>
     );

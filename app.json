@@ -4,7 +4,7 @@
     "slug": "tkride",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/tkridelogo1.png",
+    "icon": "./assets/images/tkridelogo2.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -17,7 +17,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/tkridelogo1.png",
+        "foregroundImage": "./assets/images/tkridelogo2.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.tiyokanor32.tkride"
